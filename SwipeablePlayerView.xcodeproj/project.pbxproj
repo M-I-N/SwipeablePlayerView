@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		AF3840EE21CBCFE8008F135E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3840ED21CBCFE8008F135E /* AppDelegate.swift */; };
-		AF3840F021CBCFE8008F135E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3840EF21CBCFE8008F135E /* ViewController.swift */; };
+		AF3840F021CBCFE8008F135E /* SwipeablePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3840EF21CBCFE8008F135E /* SwipeablePlayerViewController.swift */; };
 		AF3840F321CBCFE8008F135E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF3840F121CBCFE8008F135E /* Main.storyboard */; };
 		AF3840F521CBCFEA008F135E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF3840F421CBCFEA008F135E /* Assets.xcassets */; };
 		AF3840F821CBCFEA008F135E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF3840F621CBCFEA008F135E /* LaunchScreen.storyboard */; };
+		AF8650E421CBDB1F000FBC81 /* ImagesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8650E321CBDB1F000FBC81 /* ImagesPageViewController.swift */; };
+		AF8650E821CBE572000FBC81 /* UIViewController+Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8650E721CBE572000FBC81 /* UIViewController+Storyboard.swift */; };
+		AF8650EA21CC10D9000FBC81 /* Collection+BeforeAfterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8650E921CC10D9000FBC81 /* Collection+BeforeAfterItem.swift */; };
+		AFB15D2721CC11E8002A58D3 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB15D2621CC11E8002A58D3 /* ImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AF3840EA21CBCFE8008F135E /* SwipeablePlayerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwipeablePlayerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF3840ED21CBCFE8008F135E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF3840EF21CBCFE8008F135E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AF3840EF21CBCFE8008F135E /* SwipeablePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeablePlayerViewController.swift; sourceTree = "<group>"; };
 		AF3840F221CBCFE8008F135E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF3840F421CBCFEA008F135E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF3840F721CBCFEA008F135E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF3840F921CBCFEA008F135E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF8650E321CBDB1F000FBC81 /* ImagesPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesPageViewController.swift; sourceTree = "<group>"; };
+		AF8650E721CBE572000FBC81 /* UIViewController+Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Storyboard.swift"; sourceTree = "<group>"; };
+		AF8650E921CC10D9000FBC81 /* Collection+BeforeAfterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+BeforeAfterItem.swift"; sourceTree = "<group>"; };
+		AFB15D2621CC11E8002A58D3 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +63,11 @@
 			isa = PBXGroup;
 			children = (
 				AF3840ED21CBCFE8008F135E /* AppDelegate.swift */,
-				AF3840EF21CBCFE8008F135E /* ViewController.swift */,
+				AF3840EF21CBCFE8008F135E /* SwipeablePlayerViewController.swift */,
+				AF8650E321CBDB1F000FBC81 /* ImagesPageViewController.swift */,
+				AFB15D2621CC11E8002A58D3 /* ImageViewController.swift */,
+				AF8650E721CBE572000FBC81 /* UIViewController+Storyboard.swift */,
+				AF8650E921CC10D9000FBC81 /* Collection+BeforeAfterItem.swift */,
 				AF3840F121CBCFE8008F135E /* Main.storyboard */,
 				AF3840F421CBCFEA008F135E /* Assets.xcassets */,
 				AF3840F621CBCFEA008F135E /* LaunchScreen.storyboard */,
@@ -135,8 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF3840F021CBCFE8008F135E /* ViewController.swift in Sources */,
+				AF8650EA21CC10D9000FBC81 /* Collection+BeforeAfterItem.swift in Sources */,
+				AF3840F021CBCFE8008F135E /* SwipeablePlayerViewController.swift in Sources */,
 				AF3840EE21CBCFE8008F135E /* AppDelegate.swift in Sources */,
+				AF8650E821CBE572000FBC81 /* UIViewController+Storyboard.swift in Sources */,
+				AFB15D2721CC11E8002A58D3 /* ImageViewController.swift in Sources */,
+				AF8650E421CBDB1F000FBC81 /* ImagesPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
