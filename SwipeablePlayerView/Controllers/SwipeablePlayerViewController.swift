@@ -9,9 +9,13 @@
 import UIKit
 
 class SwipeablePlayerViewController: UIViewController {
-
+    
+    @IBOutlet weak var videoPlayerView: VideoPlayerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        videoPlayerView.video = Video.singleVideo()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

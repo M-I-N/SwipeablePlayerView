@@ -27,15 +27,27 @@
                                     <segue destination="ebA-O0-QJ5" kind="embed" id="bM0-tE-qo6"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6O-Of-r3G" customClass="VideoPlayerView" customModule="SwipeablePlayerView" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="228" width="375" height="211"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="c6O-Of-r3G" secondAttribute="height" multiplier="16:9" id="ewF-bE-gL3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="c6O-Of-r3G" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="GPl-0v-Bbw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cgB-EJ-jDj" secondAttribute="trailing" id="JS6-6t-pN1"/>
                             <constraint firstItem="cgB-EJ-jDj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Kce-uX-ALh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c6O-Of-r3G" secondAttribute="trailing" id="R3W-zt-d1D"/>
                             <constraint firstItem="cgB-EJ-jDj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="du3-O6-UAC"/>
+                            <constraint firstItem="c6O-Of-r3G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tNi-IY-SdS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="videoPlayerView" destination="c6O-Of-r3G" id="fZM-Rr-o0o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -46,7 +58,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ebA-O0-QJ5" customClass="ImagesPageViewController" customModule="SwipeablePlayerView" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yz6-IP-yaq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1049" y="143"/>
+            <point key="canvasLocation" x="1482" y="132"/>
         </scene>
         <!--Image View Controller-->
         <scene sceneID="uLV-Kl-dSz">
@@ -85,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="in6-dl-5ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1839" y="143"/>
+            <point key="canvasLocation" x="2180" y="132"/>
         </scene>
     </scenes>
 </document>
