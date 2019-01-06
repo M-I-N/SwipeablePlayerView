@@ -16,14 +16,38 @@ class VideoPlayerView: UIView {
     private let videoPlayer = VideoPlayer()
     @objc private let avPlayer = AVPlayer()
     private var playbackModeObservationToken: NSKeyValueObservation?
+    private var playerItemStatusObservationToken: NSKeyValueObservation?
+    
+    weak var delegate: VideoPlayerViewPlaybackModeDelegate?
+    let allowAutoPlay: Bool = false
     
     var video: Video? {
         didSet {
             if let video = video {
                 let asset = AVURLAsset(url: video.url)
                 let item = AVPlayerItem(asset: asset)
+                
+                // add AVPlayerItem observer
+                playerItemStatusObservationToken = item.observe(\.status) { [weak self] (playerItem, _) in
+                    if let self = self {
+                        switch playerItem.status {
+                        case .unknown:
+                            self.delegate?.videoPlayerView(self, didChangeTo: .notReadyToPlay)
+                        case .readyToPlay:
+                            self.delegate?.videoPlayerView(self, didChangeTo: .readyToPlay)
+                        case .failed:
+                            self.delegate?.videoPlayerView(self, didChangeTo: .notReadyToPlay)
+                        }
+                    }
+                }
                 avPlayer.replaceCurrentItem(with: item)
-//                avPlayer.play()
+                if allowAutoPlay {
+                    avPlayer.play()
+                } else {
+                    avPlayer.pause()
+                }
+            } else {
+                avPlayer.replaceCurrentItem(with: nil)
             }
         }
     }
@@ -37,20 +61,7 @@ class VideoPlayerView: UIView {
         addSubview(nibView)
         videoPlayer.player = avPlayer
         
-        // add observer
-        /*token = avPlayer.observe(\.timeControlStatus, changeHandler: { [weak self] (_, timeControlStatusObservedValue) in
-            if let timeControlStatus = timeControlStatusObservedValue.newValue {
-                switch timeControlStatus {
-                case .paused:
-                    print("Paused state")
-                    self?.playPauseButton.isSelected = false
-                case .playing, .waitingToPlayAtSpecifiedRate:
-                    print("Playing state")
-                    self?.playPauseButton.isSelected = true
-                }
-            }
-        })*/
-        
+        // add AVPlayer observer
         playbackModeObservationToken = avPlayer.observe(\.timeControlStatus) { [unowned self] (player, _) in
             switch player.timeControlStatus {
             case .paused:
@@ -101,6 +112,21 @@ extension VideoPlayerView {
             avPlayer.play()
         }
     }
+}
+
+// MARK: - PlaybackMode Enum
+/// Enum
+///
+/// - readyToPlay: Video Player is ready for playback
+/// - notReadyToPlay: Video Player isn't ready for playback
+enum VideoPlayerViewPlaybackMode {
+    case readyToPlay
+    case notReadyToPlay
+}
+
+// MARK: - VideoPlayerView playback mode delegate
+protocol VideoPlayerViewPlaybackModeDelegate: class {
+    func videoPlayerView(_ videoPlayerView: VideoPlayerView, didChangeTo mode: VideoPlayerViewPlaybackMode)
 }
 
 // MARK: - Internal Class

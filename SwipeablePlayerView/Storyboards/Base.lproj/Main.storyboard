@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6O-Of-r3G" customClass="VideoPlayerView" customModule="SwipeablePlayerView" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="228" width="375" height="211"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="c6O-Of-r3G" secondAttribute="height" multiplier="16:9" id="ewF-bE-gL3"/>
+                                </constraints>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgB-EJ-jDj">
                                 <rect key="frame" x="0.0" y="228" width="375" height="211"/>
                                 <constraints>
@@ -27,12 +33,6 @@
                                     <segue destination="ebA-O0-QJ5" kind="embed" id="bM0-tE-qo6"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6O-Of-r3G" customClass="VideoPlayerView" customModule="SwipeablePlayerView" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="228" width="375" height="211"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="c6O-Of-r3G" secondAttribute="height" multiplier="16:9" id="ewF-bE-gL3"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -46,6 +46,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="imagesPageViewControllerContainerView" destination="cgB-EJ-jDj" id="Eti-9D-Hf3"/>
                         <outlet property="videoPlayerView" destination="c6O-Of-r3G" id="fZM-Rr-o0o"/>
                     </connections>
                 </viewController>
