@@ -10,16 +10,14 @@ import UIKit
 
 class ImageViewController: UIViewController {
     
-    @IBOutlet weak var label: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     
-    var imageName: String?
+    var resource: Resource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let imageName = imageName {
-            label.text = imageName
-            imageView.image = UIImage(named: imageName)
+        if let resource = resource {
+            imageView.downloaded(from: resource.thumbnailImageName, contentMode: .scaleAspectFill)
         }
     }
     

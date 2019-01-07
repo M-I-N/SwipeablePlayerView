@@ -21,10 +21,10 @@ class VideoPlayerView: UIView {
     weak var delegate: VideoPlayerViewPlaybackModeDelegate?
     let allowAutoPlay: Bool = false
     
-    var video: Video? {
+    var resource: Resource? {
         didSet {
-            if let video = video {
-                let asset = AVURLAsset(url: video.url)
+            if let resource = resource {
+                let asset = AVURLAsset(url: resource.videoURL)
                 let item = AVPlayerItem(asset: asset)
                 
                 // add AVPlayerItem observer

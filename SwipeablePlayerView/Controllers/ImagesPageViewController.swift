@@ -10,30 +10,36 @@ import UIKit
 
 class ImagesPageViewController: UIPageViewController {
     
-    var imageNames = [String]()
-
+    var resources = [Resource]()
+    weak var pageTransitionDelegate: ImagesPageViewControllerTransitionDelegate?
+    
+    private var toBeVisibleResource: Resource?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
+        delegate = self
         
         let imageViewController = ImageViewController.instantiateFromStoryboard()
-        imageViewController.imageName = imageNames.first
+        imageViewController.resource = resources.first
         setViewControllers([imageViewController], direction: .forward, animated: true, completion: nil)
     }
     
 }
 
 extension ImagesPageViewController: UIPageViewControllerDataSource {
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         if let currentImageViewController = viewController as? ImageViewController,
-            let currentImage = currentImageViewController.imageName {
+            let currentResource = currentImageViewController.resource {
             let previousImageViewController = ImageViewController.instantiateFromStoryboard()
-            if let previousImage = imageNames.item(before: currentImage) {
-                previousImageViewController.imageName = previousImage
+            if let previousResource = resources.item(before: currentResource) {
+                previousImageViewController.resource = previousResource
             } else {
-                previousImageViewController.imageName = imageNames.last
+                previousImageViewController.resource = resources.last
             }
+            toBeVisibleResource = previousImageViewController.resource
             return previousImageViewController
         } else {
             return nil
@@ -44,13 +50,14 @@ extension ImagesPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         if let currentImageViewController = viewController as? ImageViewController,
-            let currentImage = currentImageViewController.imageName {
+            let currentResource = currentImageViewController.resource {
             let nextImageViewController = ImageViewController.instantiateFromStoryboard()
-            if let nextImage = imageNames.item(after: currentImage) {
-                nextImageViewController.imageName = nextImage
+            if let nextResource = resources.item(after: currentResource) {
+                nextImageViewController.resource = nextResource
             } else {
-                nextImageViewController.imageName = imageNames.first
+                nextImageViewController.resource = resources.first
             }
+            toBeVisibleResource = nextImageViewController.resource
             return nextImageViewController
         } else {
             return nil
@@ -58,6 +65,19 @@ extension ImagesPageViewController: UIPageViewControllerDataSource {
         
     }
     
+}
+
+extension ImagesPageViewController: UIPageViewControllerDelegate {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            // delegate the toBeVisibleResource
+            pageTransitionDelegate?.imagesPageViewController(self, didMakeVisible: toBeVisibleResource)
+        }
+    }
     
 }
 
+protocol ImagesPageViewControllerTransitionDelegate: class {
+    func imagesPageViewController(_ imagesPageViewController: ImagesPageViewController, didMakeVisible resource: Resource?)
+}

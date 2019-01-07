@@ -15,17 +15,21 @@ class SwipeablePlayerViewController: UIViewController {
     
     private var imagesPageViewController: ImagesPageViewController!
     
+    private let resources = Resource.allResources()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         videoPlayerView.delegate = self
-        videoPlayerView.video = Video.singleVideo()
+        // Initial video content providing
+        videoPlayerView.resource = resources.first
         addSwipeGestureToVideoPlayerView()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let imagesPVC = segue.destination as? ImagesPageViewController {
             imagesPageViewController = imagesPVC
-            imagesPVC.imageNames = ["Image1", "Image2", "Image3"]
+            imagesPVC.pageTransitionDelegate = self
+            imagesPVC.resources = resources
         }
     }
     
@@ -42,13 +46,13 @@ class SwipeablePlayerViewController: UIViewController {
     @objc func handleSwipeOnVideoPlayerView(gesture: UISwipeGestureRecognizer) {
         switch gesture.direction {
         case .left:
+            videoPlayerView.resource = nil
             imagesPageViewControllerContainerView.isHidden = false
             imagesPageViewController.goToNextPage()
-            videoPlayerView.video = Video.singleVideo()
         case .right:
+            videoPlayerView.resource = nil
             imagesPageViewControllerContainerView.isHidden = false
             imagesPageViewController.goToPreviousPage()
-            videoPlayerView.video = Video.singleVideo()
         default:
             break
         }
@@ -63,5 +67,14 @@ extension SwipeablePlayerViewController: VideoPlayerViewPlaybackModeDelegate {
             imagesPageViewControllerContainerView.isHidden = true
         }
     }
+    
+}
+
+extension SwipeablePlayerViewController: ImagesPageViewControllerTransitionDelegate {
+    
+    func imagesPageViewController(_ imagesPageViewController: ImagesPageViewController, didMakeVisible resource: Resource?) {
+        videoPlayerView.resource = resource
+    }
+    
     
 }
